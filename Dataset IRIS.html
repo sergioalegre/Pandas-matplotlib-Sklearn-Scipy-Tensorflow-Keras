@@ -1,0 +1,927 @@
+        <!DOCTYPE html>
+        <html lang="es">
+        
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="pingback" href="http://ligdigonzalez.com/xmlrpc.php">
+        <title>Creando un clasificador para la flor Iris - Ligdi González</title>
+<script>window._wca = window._wca || [];</script>
+
+<!-- This site is optimized with the Yoast SEO plugin v12.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="En el proyecto vamos a construir un clasificador para las flores tipo Iris este es otro de los básicos que se utilizan al estar aprendiendo Machine Learning"/>
+<link rel="canonical" href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Creando un clasificador para la flor Iris - Ligdi González" />
+<meta property="og:description" content="En el proyecto vamos a construir un clasificador para las flores tipo Iris este es otro de los básicos que se utilizan al estar aprendiendo Machine Learning" />
+<meta property="og:url" content="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/" />
+<meta property="og:site_name" content="Ligdi González" />
+<meta property="og:image" content="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/06/iris-1429686_960_720.jpg?fit=960%2C608" />
+<meta property="og:image:secure_url" content="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/06/iris-1429686_960_720.jpg?fit=960%2C608" />
+<meta property="og:image:width" content="960" />
+<meta property="og:image:height" content="608" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="En el proyecto vamos a construir un clasificador para las flores tipo Iris este es otro de los básicos que se utilizan al estar aprendiendo Machine Learning" />
+<meta name="twitter:title" content="Creando un clasificador para la flor Iris - Ligdi González" />
+<meta name="twitter:image" content="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/06/iris-1429686_960_720.jpg?fit=960%2C608" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"http://ligdigonzalez.com/#website","url":"http://ligdigonzalez.com/","name":"Ligdi Gonz\u00e1lez","potentialAction":{"@type":"SearchAction","target":"http://ligdigonzalez.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#primaryimage","url":"https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/06/iris-1429686_960_720.jpg?fit=960%2C608","width":960,"height":608,"caption":"machine learning clasificador flor iris python"},{"@type":"WebPage","@id":"http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#webpage","url":"http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/","inLanguage":"es","name":"Creando un clasificador para la flor Iris - Ligdi Gonz\u00e1lez","isPartOf":{"@id":"http://ligdigonzalez.com/#website"},"primaryImageOfPage":{"@id":"http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#primaryimage"},"datePublished":"2018-08-31T18:59:31+00:00","dateModified":"2019-02-12T21:02:14+00:00","description":"En el proyecto vamos a construir un clasificador para las flores tipo Iris este es otro de los b\u00e1sicos que se utilizan al estar aprendiendo Machine Learning"}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//stats.wp.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Ligdi González &raquo; Feed" href="http://ligdigonzalez.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Ligdi González &raquo; RSS de los comentarios" href="http://ligdigonzalez.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Ligdi González &raquo; Creando un clasificador para la flor Iris RSS de los comentarios" href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/ligdigonzalez.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='http://ligdigonzalez.com/wp-includes/css/dist/block-library/style.min.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-theme-css'  href='http://ligdigonzalez.com/wp-includes/css/dist/block-library/theme.min.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wc-block-style-css'  href='http://ligdigonzalez.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/style.css?ver=2.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://ligdigonzalez.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css'  href='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=3.7.0' type='text/css' media='all' />
+<style id='woocommerce-layout-inline-css' type='text/css'>
+
+	.infinite-scroll .woocommerce-pagination {
+		display: none;
+	}
+</style>
+<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=3.7.0' type='text/css' media='only screen and (max-width: 768px)' />
+<link rel='stylesheet' id='woocommerce-general-css'  href='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=3.7.0' type='text/css' media='all' />
+<style id='woocommerce-inline-inline-css' type='text/css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' id='higher-education-fonts-css'  href='https://fonts.googleapis.com/css?family=Nunito%2BSans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='higher-education-style-css'  href='http://ligdigonzalez.com/wp-content/themes/higher-education/style.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='higher-education-block-style-css'  href='http://ligdigonzalez.com/wp-content/themes/higher-education/css/blocks.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='http://ligdigonzalez.com/wp-content/themes/higher-education/css/font-awesome/css/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='http://ligdigonzalez.com/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.10.0' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='http://ligdigonzalez.com/wp-content/plugins/jetpack/css/jetpack.css?ver=7.7.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js?ver=20190204'></script>
+<script async type='text/javascript' src='https://stats.wp.com/s-201939.js'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/html5.min.js?ver=3.7.3'></script>
+<![endif]-->
+<script type='text/javascript'>
+/* <![CDATA[ */
+var higherEducationScreenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/custom-scripts.min.js'></script>
+<link rel='https://api.w.org/' href='http://ligdigonzalez.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ligdigonzalez.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ligdigonzalez.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<meta name="generator" content="WooCommerce 3.7.0" />
+<link rel="alternate" type="application/json+oembed" href="http://ligdigonzalez.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fligdigonzalez.com%2Fportfolio%2Fmachine-learning-clasificador-flor-iris-python%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://ligdigonzalez.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fligdigonzalez.com%2Fportfolio%2Fmachine-learning-clasificador-flor-iris-python%2F&#038;format=xml" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3663413461462078",
+          enable_page_level_ads: true
+     });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117486557-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117486557-1');
+</script>
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<link rel='dns-prefetch' href='//widgets.wp.com'/>
+<link rel='dns-prefetch' href='//s0.wp.com'/>
+<link rel='dns-prefetch' href='//0.gravatar.com'/>
+<link rel='dns-prefetch' href='//1.gravatar.com'/>
+<link rel='dns-prefetch' href='//2.gravatar.com'/>
+<link rel='dns-prefetch' href='//i0.wp.com'/>
+<link rel='dns-prefetch' href='//i1.wp.com'/>
+<link rel='dns-prefetch' href='//i2.wp.com'/>
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+			<style type="text/css" id="higher_education-header-css">
+			.site-branding {
+				margin: 0 auto 0 0;
+			}
+
+			.site-branding .site-title,
+			.site-description {
+				clip: rect(1px, 1px, 1px, 1px);
+				position: absolute;
+			}
+		</style>
+				<style type="text/css">
+			.site-title a,
+			.site-description {
+				color: #blank !important;
+			}
+		</style>
+		<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Favicon-1.png?fit=32%2C32" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Favicon-1.png?fit=192%2C192" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Favicon-1.png?fit=180%2C180" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Favicon-1.png?fit=270%2C270" />
+</head>
+
+<body class="jetpack-portfolio-template-default single single-jetpack-portfolio postid-1026 wp-custom-logo wp-embed-responsive theme-higher-education woocommerce-no-js layout-one-column no-sidebar content-width excerpt-image-left has-footer-widgets header-media-text-empty">
+
+
+        <div id="page" class="hfeed site">
+            <div class="site-inner">
+                <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+        <header id="masthead" class="site-header" role="banner">
+            <div class="wrapper site-header-main">
+        <div class="site-branding logo-left"><div id="site-logo"><a href="http://ligdigonzalez.com/" class="custom-logo-link" rel="home"><img width="2206" height="301" src="https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?fit=2206%2C301" class="custom-logo" alt="Ligdi González" srcset="https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?w=2206 2206w, https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?resize=300%2C41 300w, https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?resize=768%2C105 768w, https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?resize=1024%2C140 1024w, https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?resize=600%2C82 600w, https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?w=1840 1840w" sizes="(max-width: 2206px) 100vw, 2206px" data-attachment-id="1897" data-permalink="http://ligdigonzalez.com/cropped-nuevo-logo-blog-2-png/" data-orig-file="https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?fit=2206%2C301" data-orig-size="2206,301" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cropped-Nuevo-Logo-blog-2.png" data-image-description="&lt;p&gt;http://ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png&lt;/p&gt;
+" data-medium-file="https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?fit=300%2C41" data-large-file="https://i1.wp.com/ligdigonzalez.com/wp-content/uploads/2019/03/cropped-Nuevo-Logo-blog-2.png?fit=920%2C126" /></a></div><!-- #site-logo --><div id="site-header" class="screen-reader-text"><p class="site-title"><a href="http://ligdigonzalez.com/">Ligdi González</a></p><p class="site-description">Aprende todo sobre Inteligencia Artificial</p>
+		</div><!-- #site-header --></div><!-- .site-branding.logo-left -->		<button id="menu-toggle-primary" class="menu-toggle"><span class="menu-label">Menu</span></button>
+
+		<div id="site-header-menu-primary" class="site-header-menu">
+			<nav id="site-navigation-primary" class="main-navigation" role="navigation" aria-label="Primary Menu">
+			<h3 class="screen-reader-text">Primary menu</h3>
+				<ul id="menu-menu-1" class="menu primary-menu"><li id="menu-item-1900" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1900"><a href="http://ligdigonzalez.com/cursos/">Cursos</a>
+<ul class="sub-menu">
+	<li id="menu-item-3209" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3209"><a href="http://ligdigonzalez.com/como-armar-un-portafolio-de-machine-learning/">Curso – Crear un portafolio para Machine Learning + Proyecto</a></li>
+	<li id="menu-item-3213" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3213"><a href="http://ligdigonzalez.com/proyectos-en-python-para-machine-learning/">Curso – 5 proyectos prácticos de la vida real de Machine Learning</a></li>
+	<li id="menu-item-3217" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3217"><a href="http://ligdigonzalez.com/analisis-sentimental-con-python/">Curso – Introducción al Análisis Sentimental</a></li>
+	<li id="menu-item-1894" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1894"><a href="http://ligdigonzalez.com/curso-gratis-introduccion-a-machine-learning/">Curso Gratis – Introducción a Machine Learning</a></li>
+	<li id="menu-item-1937" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1937"><a href="http://ligdigonzalez.com/curso-gratis-actualizado-introduccion-a-machine-learning/">Curso Gratis – (Actualizado) Introducción a Machine Learning</a></li>
+	<li id="menu-item-1893" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1893"><a href="http://ligdigonzalez.com/curso-gratis-machine-learning-con-python/">Curso Gratis – Machine Learning con Python</a></li>
+	<li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892"><a href="http://ligdigonzalez.com/curso-gratis-preprocesamiento-de-datos/">Curso Gratis – Preprocesamiento de Datos</a></li>
+	<li id="menu-item-1895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1895"><a href="http://ligdigonzalez.com/curso-introduccion-a-python/">Curso Gratis – Introducción a Python</a></li>
+</ul>
+</li>
+<li id="menu-item-3098" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3098"><a href="http://ligdigonzalez.com/libro-de-machine-learning-con-python-en-espanol/">Libro</a></li>
+<li id="menu-item-1896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1896"><a href="http://ligdigonzalez.com/recursos/">Recursos</a></li>
+<li id="menu-item-641" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-641"><a href="http://ligdigonzalez.com/portfolio/">Proyectos</a></li>
+<li id="menu-item-429" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-429"><a href="http://ligdigonzalez.com/blog">Blog</a></li>
+<li id="menu-item-897" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-897"><a href="http://ligdigonzalez.com/sobre-mi/">Sobre mí</a></li>
+<li id="menu-item-417" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-417"><a href="http://ligdigonzalez.com/contacto/">Contacto</a></li>
+</ul>			</nav><!-- .main-navigation -->
+
+			<div class="mobile-social-search">
+				<nav id="social-navigation" class="social-navigation" role="navigation" aria-label="Social Links Menu" aria-expanded="false">
+					<button id="search-toggle" class="toggle-top"><span class="search-label screen-reader-text">Search</span></button>
+
+					<div class="search-container">
+<form role="search" method="get" class="search-form" action="http://ligdigonzalez.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Buscar..." value="" name="s">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</div>
+
+					
+					<button id="share-toggle" class="toggle-top"><span class="search-label screen-reader-text">Social Menu</span></button>
+
+					<div class="menu-social-container"><a class="fa fa-youtube" target="_blank" title="YouTube" href="https://www.youtube.com/channel/UCLJV54sFqPiH4MYcJKvGesg"><span class="screen-reader-text">YouTube</span> </a></div>
+									</nav><!-- .social-navigation -->
+			</div><!-- .mobile-social-search -->
+		</div><!-- .site-header-menu -->
+	            </div><!-- .wrapper -->
+        </header><!-- #masthead -->
+                <div id="content" class="site-content">
+            <div class="wrapper">
+    
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+			
+				
+<article id="post-1026" class="post-1026 jetpack-portfolio type-jetpack-portfolio status-publish has-post-thumbnail hentry">
+	<!-- Page/Post Single Image Disabled or No Image set in Post Thumbnail -->
+	<div class="entry-container">
+		<header class="entry-header">
+			<h1 class="entry-title">Creando un clasificador para la flor Iris</h1>
+			<p class="entry-meta"><span class="byline"><span class="author vcard"><span class="screen-reader-text">Author</span><a class="url fn n" href="http://ligdigonzalez.com/author/ligdieli/">ligdieli</a></span>&nbsp;/&nbsp;</span><span class="posted-on"><span class="screen-reader-text">Posted on</span><a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/" rel="bookmark"><time class="entry-date published" datetime="2018-08-31T18:59:31+00:00">31 agosto, 2018</time><time class="updated" datetime="2019-02-12T21:02:14+00:00">12 febrero, 2019</time></a></span><span class="comments-link"><a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#comments">4 Comments</a></span></p><!-- .entry-meta -->		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' type='text/html' width='920' height='518' src='https://www.youtube.com/embed/0ySe8CkocE8?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span></p>
+<p>En el proyecto de hoy vamos a construir un clasificador para las flores tipo Iris. Este proyecto es otro de los básicos, <a href="http://ligdigonzalez.com/predecir-la-supervivencia-del-titanic-utilizando-python/" target="_blank" rel="noopener">como el del Titanic</a>, que se utilizan al momento de estar aprendiendo Machine Learning, por lo que acá lo desarrollaremos.</p>
+<p>Los datos lo vamos a obtener de la página de <a href="https://www.kaggle.com/uciml/iris">Kaggle</a>, para ello se deben suscribir para poder tener acceso a los mismos, aunque este dataset está también disponible en el repositorio de la Universidad de California, lugar en donde originalmente se publicaron estos datos.</p>
+<p>Igual que en los anteriores programas vamos a utilizar como lenguaje de programación Python.</p>
+<p><a href="https://flic.kr/p/2eHU5rt"><img src="https://i0.wp.com/farm8.staticflickr.com/7866/47075467621_85ab810139_b.jpg?resize=900%2C300&#038;ssl=1" alt="iris_types" width="900" height="300" data-recalc-dims="1" /></a></p>
+<p>Antes de empezar a programar entendamos un poco este dataset. Este conjunto de datos contiene 50 muestras de cada una de tres especies de Iris: Iris setosa, Iris virginica e Iris versicolor, para cada una de estas especies se midieron cuatro rasgos de cada muestra: la longitud y el ancho del sépalos y pétalos. Los sépalos son los que envuelven a las otras piezas florales en las primeras fases de desarrollo, cuando la flor es solo un capullo, por su parte los pétalos son la parte inferior del perianto y comprende las partes estériles de una flor.</p>
+<p>En estas fotos podrás observar la diferencia entre pétalo y sépalo y a su vez la diferencia entre las tres especies de Iris.</p>
+<p><a href="https://flic.kr/p/247rPeZ"><img src="https://i2.wp.com/farm8.staticflickr.com/7872/40110698543_23f5e6c0ef_m.jpg?resize=216%2C233&#038;ssl=1" alt="descarga" width="216" height="233" data-recalc-dims="1" /></a></p>
+<p>Sabiendo todo esto ahora si podemos empezar a programar.</p>
+<p>Lo primero que debemos hacer es importar las librerías. Las primeras, como siempre, serán numpy y pandas.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">import numpy as np
+import pandas as pd</pre>
+<p>Seguidamente importamos los datos, para ello se descarga el archivo csv de la página de Kaggle y se guarda en el computador en donde se está trabajando. Posteriormente precedimos a leer el archivo para ello utilizamos la instrucción read_csv.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Importamos el dataset para iniciar el análisis
+iris = pd.read_csv("Iris.csv")</pre>
+<p>Visualizamos ahora los primeros 5 datos del dataset utilizando la instrucción head.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Visualizamos los primeros 5 datos del dataset
+print(iris.head())</pre>
+<p><a href="https://flic.kr/p/247rAZZ"><img src="https://i2.wp.com/farm8.staticflickr.com/7847/40110657363_be10aa5f4d_c.jpg?resize=800%2C130&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-1" width="800" height="130" data-recalc-dims="1" /></a></p>
+<p>Como podemos observar el dataset cuenta 6 columnas, en donde están las características de ancho y longitud del sépalo y pétalo, a su vez el nombre de cada una de las especies. Pero adicionalmente a todo esto se encuentra una columna llamada ID que está demás, ya que una vez que los datos se convierten en pandas se crea automáticamente una columna con la numeración por lo que podemos eliminar la columna ID. Para esto utilizamos la instrucción drop.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Eliminamos la primera columna ID
+iris = iris.drop('Id',axis=1)
+print(iris.head())</pre>
+<p><a href="https://flic.kr/p/247rAHM"><img src="https://i0.wp.com/farm8.staticflickr.com/7900/40110656423_1cf4264289_c.jpg?resize=800%2C128&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-2" width="800" height="128" data-recalc-dims="1" /></a></p>
+<p>Ahora procedemos a analizar los datos. Acá utilizamos todos los comandos necesarios para entender el dataset.</p>
+<p>Primeramente, utilizaremos info.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Análizamos los datos que tenemos disponibles
+print('Información del dataset:')
+print(iris.info())</pre>
+<p><a href="https://flic.kr/p/247rAvH"><img src="https://i1.wp.com/farm8.staticflickr.com/7856/40110655723_1f9fa272dd_z.jpg?resize=581%2C360&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-3" width="581" height="360" data-recalc-dims="1" /></a></p>
+<p>Acá nos indica que todas las columnas contienen 150 datos, en las primeras tenemos datos flotantes mientras que la última contiene datos objetos y es justamente acá en donde se encuentra la información de las especies de la flor.</p>
+<p>Seguidamente utilizamos describe. En donde podemos observar los datos estadísticos del dataset.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">print('Descripción del dataset:')
+print(iris.describe())</pre>
+<p><a href="https://flic.kr/p/247rAhB"><img src="https://i0.wp.com/farm8.staticflickr.com/7901/40110654963_8e7f514239_c.jpg?resize=800%2C245&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-4" width="800" height="245" data-recalc-dims="1" /></a></p>
+<p>Por último, verificamos la distribución de los datos de acuerdo a las especies de Iris, para ello utilizamos la instrucción groupby, especificando la columna Species y el tamaño de la misma.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">print('Distribución de las especies de Iris:')
+print(iris.groupby('Species').size())</pre>
+<p><a href="https://flic.kr/p/247rzTk"><img src="https://i0.wp.com/farm8.staticflickr.com/7808/40110653613_beb02fef37_z.jpg?resize=568%2C181&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-5" width="568" height="181" data-recalc-dims="1" /></a></p>
+<p>Como podemos observar tenemos 50 datos para cada una de las especies, Iris setosa, Iris versicolor e Iris Virginica.</p>
+<p>Entendiendo todo esto veamos los datos de manera visual, para ello importamos la librería de matplotlib y procedamos a graficar el dataset.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">import matplotlib.pyplot as plt</pre>
+<p>La gráfica a construir será del tipo dispersión, y vamos a graficar primero los datos correspondientes al sépalo. Colocamos en el eje X los datos de longitud y en el eje Y los datos del ancho, a su vez para cada una de las especies de Iris le colocamos un color. Para los datos del Iris setosa los colocamos de color azul, para el Iris Versicolor será de color verde y para el Iris Virginica colocamos los datos de color rojo.</p>
+<p>De igual forma colocamos los nombres correspondientes al eje X y Y y el título de la gráfica y procedemos a graficarlos.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Grafico Sepal - Longitud vs Ancho
+fig = iris[iris.Species == 'Iris-setosa'].plot(kind='scatter', x='SepalLengthCm', y='SepalWidthCm', color='blue', label='Setosa')
+iris[iris.Species == 'Iris-versicolor'].plot(kind='scatter', x='SepalLengthCm', y='SepalWidthCm', color='green', label='Versicolor', ax=fig)
+iris[iris.Species == 'Iris-virginica'].plot(kind='scatter', x='SepalLengthCm', y='SepalWidthCm', color='red', label='Virginica', ax=fig)
+
+fig.set_xlabel('Sépalo - Longitud')
+fig.set_ylabel('Sépalo - Ancho')
+fig.set_title('Sépalo - Longitud vs Ancho')
+plt.show()</pre>
+<p><a href="https://flic.kr/p/247rzBP"><img src="https://i2.wp.com/farm8.staticflickr.com/7857/40110652713_81fe346536_b.jpg?resize=843%2C593&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-6" width="843" height="593" data-recalc-dims="1" /></a></p>
+<p>Si te fijas en la gráfica los datos están distribuidos de manera casi uniforme sobretodo los correspondientes al Iris setosa, mientras que los correspondientes a versicolor y virginica tienen cualidades algo parecidas por lo que se solapan en ocasiones.</p>
+<p>Ahora procedemos a hacer exactamente lo mismo, pero con la información de los pétalos. Si te fijas el código de programación es exactamente el mismo al anterior lo único diferente es que ahora se especifica los datos del pétalo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Grafico Pétalo - Longitud vs Ancho
+fig = iris[iris.Species == 'Iris-setosa'].plot(kind='scatter', x='PetalLengthCm', y='PetalWidthCm', color='blue', label='Setosa')
+iris[iris.Species == 'Iris-versicolor'].plot(kind='scatter', x='PetalLengthCm', y='PetalWidthCm', color='green', label='Versicolor', ax=fig)
+iris[iris.Species == 'Iris-virginica'].plot(kind='scatter', x='PetalLengthCm', y='PetalWidthCm', color='red', label='Virginica', ax=fig)
+
+fig.set_xlabel('Pétalo - Longitud')
+fig.set_ylabel('Pétalo - Ancho')
+fig.set_title('Pétalo Longitud vs Ancho')
+plt.show()</pre>
+<p><a href="https://flic.kr/p/247rytr"><img src="https://i0.wp.com/farm8.staticflickr.com/7890/40110648863_2c88841f77_b.jpg?resize=818%2C568&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-7" width="818" height="568" data-recalc-dims="1" /></a></p>
+<p>Acá podemos observar una distribución mucho más uniforme en comparación con el sépalo.</p>
+<p>Hasta este momento hemos importado los datos, los hemos analizados e inclusive los hemos graficado, por lo que ha llegado el momento de desarrollar el clasificador utilizando los algoritmos de Machine Learning.</p>
+<p>Lo primero que debemos hacer es importar todas las librerías a utilizar, comenzando por train_test_split. Seguidamente por las librerías de los algoritmos, en este caso vamos a trabajar con Regresión Logística, Máquinas de Vectores de Soporte, Vecinos más Cercanos y Árboles de Decisión Clasificación. Recuerda que este es un ejercicio de clasificación por lo que todos los algoritmos a implementar deberán ser para este tipo de problemas.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier</pre>
+<p>Acá nos vamos a detener un momento para indicar que en realidad podemos construir varios modelos, el primero de será con todos los datos del dataset, es decir para utilizar este modelo deberás tener la información del sépalo y el pétalo para poderlo utilizar. Pero adicionalmente podemos desarrollar otros dos modelos en donde utilicemos solamente los datos del sépalo y otro con el pétalo. Por lo que al final vamos a tener 3 modelos en total. Adicionalmente, para la construcción de nuestro modelo evaluaremos distintos algoritmos de Machine Learning para encontrar el más adecuado.</p>
+<p>Entonces comencemos a construir nuestro primer modelo con todos los datos, lo primero que debemos hacer es separar los datos con las características, que vendrían siendo todas menos la columna de especies, a estos datos los vamos a llamar “X” y los datos con las etiquetas o respuestas que sería la columna de especies vendrían siendo la variable “y”.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Separo todos los datos con las características y las etiquetas o resultados
+X = np.array(iris.drop(['Species'], 1))
+y = np.array(iris['Species'])</pre>
+<p>En este punto separamos los datos de entrenamiento y prueba utilizando la instrucción train_test_split.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+print('Son {} datos para entrenamiento y {} datos para prueba'.format(X_train.shape[0], X_test.shape[0]))
+</pre>
+<p><a href="https://flic.kr/p/247ry8r"><img src="https://i0.wp.com/farm8.staticflickr.com/7924/40110647703_f620c1c2bd_b.jpg?resize=849%2C39&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-8" width="849" height="39" data-recalc-dims="1" /></a></p>
+<p>Ahora si empecemos a aplicar los algoritmos de Machine Learning comenzando con Regresión Logística. Obviamente lo primero que debemos hacer es definir el algoritmo, LogisticRegression, seguidamente lo entrenamos utilizando la instrucción fit y realizamos la una predicción utilizando los datos de X_test. Para determinar la precisión o confianza del algoritmo utilizamos la instrucción score para calcularla.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Regresión Logística: {}'.format(algoritmo.score(X_train, y_train)))</pre>
+<p><a href="https://flic.kr/p/2dBUFp1"><img src="https://i0.wp.com/farm8.staticflickr.com/7837/46351329474_1f9b8a4677_z.jpg?resize=520%2C27&#038;ssl=1" alt="iris-1" width="520" height="27" data-recalc-dims="1" /></a></p>
+<p>Con ella nos da un resultado de 0,975, lo cual no esta nada mal pero aún así vamos a verificar con otros algoritmos para ver si mejoramos este número.</p>
+<p>Procedemos a desarrollar un nuevo modelo ahora con el algoritmo de Máquinas de Vectores de Soporte, el procedimiento es exactamente igual, primero definimos el algoritmo, en este caso será SVC, lo entrenamos utilizando los datos de entrenamiento, realizamos una predicción y finalmente calculamos la precisión del mismo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Máquinas de Vectores de Soporte: {}'.format(algoritmo.score(X_train, y_train)))</pre>
+<p><img data-attachment-id="1071" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-2/#main" data-orig-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?fit=864%2C27" data-orig-size="864,27" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="iris 2" data-image-description="" data-medium-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?fit=300%2C9" data-large-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?fit=864%2C27" class="machine learning clasificador flor iris python alignnone wp-image-1071 size-full" title="machine learning clasificador flor iris python" src="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?resize=864%2C27" alt="machine learning clasificador flor iris python" width="864" height="27" srcset="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?w=864 864w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?resize=300%2C9 300w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?resize=768%2C24 768w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-2.png?resize=600%2C19 600w" sizes="(max-width: 864px) 100vw, 864px" data-recalc-dims="1" /></p>
+<p>El resultado es de 0,991, un valor mucho mejor que el que obtuvimos con el anterior algoritmo.</p>
+<p>Continuemos realizando las evaluaciones de los algoritmos y ahora vamos hacer el cálculo con el algoritmo de K vecinos más cercanos. El procedimiento es el mismo que hicimos con los otros algoritmos, solamente que acá tenemos que definir el número de vecinos que se evaluaran, entonces definimos el algoritmo KNeighborsClassifier y definimos el número de vecinos que sería para nosotros igual a 5, este número podemos cambiarlo y ver como cambia la precisión del algoritmo. Seguidamente entrenamos el algoritmo, realizamos una predicción y finalmente calculamos la precisión del algoritmo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Vecinos más Cercanos: {}'.format(algoritmo.score(X_train, y_train)))</pre>
+<p><img data-attachment-id="1072" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-3/#main" data-orig-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?fit=706%2C31" data-orig-size="706,31" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="iris 3" data-image-description="" data-medium-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?fit=300%2C13" data-large-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?fit=706%2C31" class="machine learning clasificador flor iris python alignnone wp-image-1072 size-full" title="machine learning clasificador flor iris python" src="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?resize=706%2C31" alt="machine learning clasificador flor iris python" width="706" height="31" srcset="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?w=706 706w, https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?resize=300%2C13 300w, https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/iris-3.png?resize=600%2C26 600w" sizes="(max-width: 706px) 100vw, 706px" data-recalc-dims="1" /></p>
+<p>Obtenemos como resultado 0,983, siendo muy parecido al obtenido con el primer algoritmo, por lo que hasta los momentos el modelo obtenido con el algoritmo de Máquinas de Soporte es el mejor.</p>
+<p>Evaluemos ahora el algoritmo de Árboles de Decisión Clasificación, definamos el algoritmo que sería DecisionTreeClassifier, seguidamente lo entrenamos y realizamos una predicción y seguidamente calculamos la precisión del mismo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Árboles de Decisión Clasificación: {}'.format(algoritmo.score(X_train, y_train)))</pre>
+<p><a href="https://flic.kr/p/247oKJZ"><img src="https://i1.wp.com/farm8.staticflickr.com/7857/40110101433_6cc2788bb0_b.jpg?resize=689%2C31&#038;ssl=1" alt="iris-4" width="689" height="31" data-recalc-dims="1" /></a></p>
+<p>Acá el resultado es igual a 1, es decir que se puede decir que este modelo es perfecto, por lo que sería el ideal para realizar las próximas predicciones.</p>
+<p>Con esto tenemos un modelo creado con todo el conjunto de datos, <strong>ahora vamos a desarrollar y evaluar un nuevo modelo pero esta vez solamente con los datos correspondientes al sépalo, es decir que este modelo solamente evaluara estos datos más no los del pétalo.</strong></p>
+<p>El procedimiento es muy parecido al anterior la diferencia son los datos que tomares para construir el modelo, entonces empecemos el desarrollo.</p>
+<p>Lo primero es definir los datos, como son exclusivamente los del sépalo debemos seleccionar estas columnas, que sería el de la longitud y ancho del sépalo y obviamente la columna correspondiente a la de especies.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Separo todos los datos con las características y las etiquetas o resultados
+sepalo = iris[['SepalLengthCm','SepalWidthCm','Species']]</pre>
+<p>Definido los datos ahora procedemos a separar las características con las etiquetas, a estos datos los vamos a llamar X_sepalo y Y_sepalo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">X_sepalo = np.array(sepalo.drop(['Species'], 1))
+y_sepalo = np.array(sepalo['Species'])</pre>
+<p>Ahora procedemos a separar los datos de entrenamiento y prueba para proceder a construir los modelos.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(X_sepalo, y_sepalo, test_size=0.2)
+
+print('Son {} datos sépalo para entrenamiento y {} datos sépalo para prueba'.format(X_train.shape[0], X_test.shape[0]))</pre>
+<p><img data-attachment-id="1075" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-1-2/#main" data-orig-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?fit=1093%2C37" data-orig-size="1093,37" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Iris 1" data-image-description="" data-medium-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?fit=300%2C10" data-large-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?fit=920%2C31" class="machine learning clasificador flor iris python alignnone wp-image-1075 size-full" title="machine learning clasificador flor iris python" src="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?resize=920%2C31" alt="machine learning clasificador flor iris python" width="920" height="31" srcset="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?w=1093 1093w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?resize=300%2C10 300w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?resize=768%2C26 768w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?resize=1024%2C35 1024w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-1.png?resize=600%2C20 600w" sizes="(max-width: 920px) 100vw, 920px" data-recalc-dims="1" /></p>
+<p>Comencemos con el algoritmo de Regresión Logística, el procedimiento es exactamente igual que hicimos anteriormente, definimos el algoritmo, lo entrenamos, realizamos una predicción y calculamos la precisión del modelo. Ten la precaución acá que los datos que utilizamos deberán ser los correspondientes al sépalo únicamente.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Regresión Logística - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))</pre>
+<p><a href="https://flic.kr/p/2eHRjWM"><img src="https://i2.wp.com/farm8.staticflickr.com/7824/47074931081_df2421a62b_b.jpg?resize=685%2C29&#038;ssl=1" alt="Iris-2" width="685" height="29" data-recalc-dims="1" /></a></p>
+<p>La precisión de este modelo es de 0,75 lo que cual no es tan bueno, por lo que tenemos que evaluar otros algoritmos para verificar si podemos obtener algo mejor.</p>
+<p>Por lo tanto, ahora desarrollemos un modelo utilizando el algoritmo de Máquinas de Vectores de Soporte, igual que anteriormente, definimos el algoritmo, lo entrenamos, realizamos una predicción y finalmente calculamos la precisión.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Máquinas de Vectores de Soporte - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))</pre>
+<p><img data-attachment-id="1077" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-3-2/#main" data-orig-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?fit=883%2C29" data-orig-size="883,29" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Iris 3" data-image-description="" data-medium-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?fit=300%2C10" data-large-file="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?fit=883%2C29" class="machine learning clasificador flor iris python alignnone wp-image-1077 size-full" title="machine learning clasificador flor iris python" src="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?resize=883%2C29" alt="machine learning clasificador flor iris python" width="883" height="29" srcset="https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?w=883 883w, https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?resize=300%2C10 300w, https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?resize=768%2C25 768w, https://i0.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-3.png?resize=600%2C20 600w" sizes="(max-width: 883px) 100vw, 883px" data-recalc-dims="1" /></p>
+<p>El resultado obtenido es de 0,825, el cual mejoro comparándolo con el anterior algoritmo, aunque no es el mejor resultado.</p>
+<p>Evaluemos el algoritmo de K Vecinos más Cercanos, definimos el algoritmo en nuestro programa, entrenamos el modelo, realizamos una predicción y calculamos la precisión del modelo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Vecinos más Cercanos - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))</pre>
+<p><img data-attachment-id="1078" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-4-2/#main" data-orig-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?fit=712%2C35" data-orig-size="712,35" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Iris 4" data-image-description="" data-medium-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?fit=300%2C15" data-large-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?fit=712%2C35" class="machine learning clasificador flor iris python alignnone wp-image-1078 size-full" title="machine learning clasificador flor iris python" src="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?resize=712%2C35" alt="machine learning clasificador flor iris python" width="712" height="35" srcset="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?w=712 712w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?resize=300%2C15 300w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-4.png?resize=600%2C29 600w" sizes="(max-width: 712px) 100vw, 712px" data-recalc-dims="1" /></p>
+<p>La precisión de este algoritmo es de 0,825, muy parecido al anterior algoritmo, pero aún este resultado no es muy optimo.</p>
+<p>Por lo que evaluemos el último algoritmo que sería Árboles de Decisión Clasificación, igual que anteriormente y utilizando los datos correspondientes al sépalo, definimos el algoritmo, lo entrenamos, realizamos una predicción y calculamos la precisión.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Árboles de Decisión Clasificación - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))</pre>
+<p><a href="https://flic.kr/p/247oK14"><img src="https://i2.wp.com/farm8.staticflickr.com/7865/40110098943_e47300569d_c.jpg?resize=800%2C29&#038;ssl=1" alt="Iris-5" width="800" height="29" data-recalc-dims="1" /></a></p>
+<p>El resultado es de 0,941, siendo este el mejor de los resultados por lo que este es el mejor modelo de todos.</p>
+<p><strong>Ahora desarrollemos el último de los modelos que vamos hacer en este proyecto, para este vamos a utilizar los datos correspondientes al pétalo, tanto longitud como ancho y por supuesto la columna de especies que sería la etiqueta.</strong></p>
+<p>El procedimiento acá es exactamente igual al anterior, la única diferencia son los datos que vamos a tomar para entrenar el modelo, entonces empecemos con este desarrollo.</p>
+<p>Lo primero que debemos hacer es definir las columnas con las que vamos a trabajar, como ya lo indicamos son las correspondientes al pétalo.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">petalo = iris[['PetalLengthCm','PetalWidthCm','Species']]</pre>
+<p>Seguidamente separamos las columnas correspondientes a las características con las etiquetas.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">X_petalo = np.array(petalo.drop(['Species'], 1))
+y_petalo = np.array(petalo['Species'])</pre>
+<p>Procedemos a separar los datos de entrenamiento con los de pruebas.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train_p, X_test_p, y_train_p, y_test_p = train_test_split(X_petalo, y_petalo, test_size=0.2)
+
+print('Son {} datos pétalo para entrenamiento y {} datos pétalo para prueba'.format(X_train.shape[0], X_test.shape[0]))</pre>
+<p><a href="https://flic.kr/p/2eDhTb7"><img src="https://i2.wp.com/farm8.staticflickr.com/7848/47023334822_4ed0566fdc_c.jpg?resize=800%2C30&#038;ssl=1" alt="Creando-un-clasificador-para-la-flor-Iris-9" width="800" height="30" data-recalc-dims="1" /></a></p>
+<p>Con esto ya podemos realizar las pruebas respectivas con cada uno de los algoritmos igual que lo hicimos anteriormente.</p>
+<p>Comencemos con el algoritmo de Regresión Logística.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Regresión Logística - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))</pre>
+<p><img class="alignnone wp-image-1081 size-full" src="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-6-1.png?resize=889%2C31" alt="" width="889" height="31" data-recalc-dims="1" /></p>
+<p><a href="https://flic.kr/p/247oJzp"><img src="https://i0.wp.com/farm8.staticflickr.com/7809/40110097513_1d053b6987_b.jpg?resize=889%2C31&#038;ssl=1" alt="Iris-6" width="889" height="31" data-recalc-dims="1" /></a></p>
+<p>Con este algoritmo obtenemos 0,891, que no es un buen resultado, por lo que debemos continuar con las pruebas.</p>
+<p>Ahora desarrollamos el algoritmo de Máquinas de Vectores de Soporte.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Máquinas de Vectores de Soporte - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))</pre>
+<p><img data-attachment-id="1084" data-permalink="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/iris-7/#main" data-orig-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?fit=1068%2C31" data-orig-size="1068,31" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Iris 7" data-image-description="" data-medium-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?fit=300%2C9" data-large-file="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?fit=920%2C27" class="machine learning clasificador flor iris python alignnone wp-image-1084 size-full" title="machine learning clasificador flor iris python" src="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?resize=920%2C27" alt="machine learning clasificador flor iris python" width="920" height="27" srcset="https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?w=1068 1068w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?resize=300%2C9 300w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?resize=768%2C22 768w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?resize=1024%2C30 1024w, https://i2.wp.com/ligdigonzalez.com/wp-content/uploads/2018/07/Iris-7.png?resize=600%2C17 600w" sizes="(max-width: 920px) 100vw, 920px" data-recalc-dims="1" /></p>
+<p>La precisión de este algoritmo es de 0,958, lo que es un resultado mucho mejor que el obtenido con el anterior algoritmo.</p>
+<p>Evaluemos el algoritmo de K Vecinos más Cercanos.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Vecinos más Cercanos - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))</pre>
+<p><a href="https://flic.kr/p/2eDf7zs"><img src="https://i0.wp.com/farm8.staticflickr.com/7926/47022794572_25c4590d9c_b.jpg?resize=708%2C29&#038;ssl=1" alt="Iris-10" width="708" height="29" data-recalc-dims="1" /></a></p>
+<p>Con este algoritmo se obtuvo una precisión de 0,975, que es un resultado bueno pero es mucho mejor el obtenido con el anterior algoritmo.</p>
+<p>Finalizamos realizando las pruebas con el algoritmo de Árboles de Decisión Clasificación.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Árboles de Decisión Clasificación - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))</pre>
+<p><a href="https://flic.kr/p/2eDf75E"><img src="https://i1.wp.com/farm8.staticflickr.com/7835/47022792902_47331fc92c_b.jpg?resize=881%2C35&#038;ssl=1" alt="Iris-11" width="881" height="35" data-recalc-dims="1" /></a></p>
+<p>La precisión de este algoritmo es de 1, lo cual es el mejor resultado de todos los algoritmos que evaluamos con estos datos.</p>
+<p>En conclusión, se construyeron varios modelos con tres conjuntos de datos, siendo <strong>el modelo construido con el algoritmo de Árbol de Decisión Clasificación el que obtuvo los mejores resultados en cuanto a la precisión</strong>.</p>
+<p>A continuación se encuentra el código completo para este problema.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">"""
+Clasificar las plantas Iris 
+
+@author: ligdigonzalez
+"""
+
+########## LIBRERÍAS A UTILIZAR ##########
+
+import numpy as np
+import pandas as pd 
+
+########## IMPORTAMOS LOS DATOS ##########
+
+#Importamos el dataset para iniciar el análisis
+iris = pd.read_csv("Iris.csv")
+
+#Visualizamos los primeros 5 datos del dataset
+#print(iris.head())
+
+#Eliminamos la primera columna ID
+iris = iris.drop('Id',axis=1)
+#print(iris.head())
+
+########## ANALIZAMOS LOS DATOS ##########
+
+#Análizamos los datos que tenemos disponibles
+print('Información del dataset:')
+print(iris.info())
+
+print('Descripción del dataset:')
+print(iris.describe())
+
+print('Distribución de las especies de Iris:')
+print(iris.groupby('Species').size())
+
+########## VISUALIZAMOS LOS DATOS ##########
+
+import matplotlib.pyplot as plt
+
+#Grafico Sepal - Longitud vs Ancho
+fig = iris[iris.Species == 'Iris-setosa'].plot(kind='scatter', 
+          x='SepalLengthCm', y='SepalWidthCm', color='blue', label='Setosa')
+iris[iris.Species == 'Iris-versicolor'].plot(kind='scatter', 
+    x='SepalLengthCm', y='SepalWidthCm', color='green', label='Versicolor', ax=fig)
+iris[iris.Species == 'Iris-virginica'].plot(kind='scatter', 
+    x='SepalLengthCm', y='SepalWidthCm', color='red', label='Virginica', ax=fig)
+
+fig.set_xlabel('Sépalo - Longitud')
+fig.set_ylabel('Sépalo - Ancho')
+fig.set_title('Sépalo - Longitud vs Ancho')
+plt.show()
+
+#Grafico Pétalo - Longitud vs Ancho
+fig = iris[iris.Species == 'Iris-setosa'].plot(kind='scatter', 
+          x='PetalLengthCm', y='PetalWidthCm', color='blue', label='Setosa')
+iris[iris.Species == 'Iris-versicolor'].plot(kind='scatter', 
+    x='PetalLengthCm', y='PetalWidthCm', color='green', 
+    label='Versicolor', ax=fig)
+iris[iris.Species == 'Iris-virginica'].plot(kind='scatter', 
+    x='PetalLengthCm', y='PetalWidthCm', color='red', label='Virginica', ax=fig)
+
+fig.set_xlabel('Pétalo - Longitud')
+fig.set_ylabel('Pétalo - Ancho')
+fig.set_title('Pétalo Longitud vs Ancho')
+plt.show()
+
+########## APLICACIÓN DE ALGORITMOS DE MACHINE LEARNING ##########
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+##################################################################
+########## MODELO CON TODOS LOS DATOS
+#Separo todos los datos con las características y las etiquetas o resultados
+X = np.array(iris.drop(['Species'], 1))
+y = np.array(iris['Species'])
+
+#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print('Son {} datos para entrenamiento y {} datos para prueba'.format(X_train.shape[0], X_test.shape[0]))
+
+#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Regresión Logística: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Máquinas de Vectores de Soporte: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Vecinos más Cercanos: {}'.format(algoritmo.score(X_train, y_train)))
+
+#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train, y_train)
+Y_pred = algoritmo.predict(X_test)
+print('Precisión Árboles de Decisión Clasificación: {}'.format(algoritmo.score(X_train, y_train)))
+
+##################################################################
+########## MODELO CON DATOS DE SÉPALO
+#Separo todos los datos con las características y las etiquetas o resultados
+sepalo = iris[['SepalLengthCm','SepalWidthCm','Species']]
+X_sepalo = np.array(sepalo.drop(['Species'], 1))
+y_sepalo = np.array(sepalo['Species'])
+
+#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(X_sepalo, y_sepalo, test_size=0.2)
+print('Son {} datos sépalo para entrenamiento y {} datos sépalo para prueba'.format(X_train.shape[0], X_test.shape[0]))
+
+#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Regresión Logística - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))
+
+#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Máquinas de Vectores de Soporte - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))
+
+#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Vecinos más Cercanos - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))
+
+#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train_s, y_train_s)
+Y_pred = algoritmo.predict(X_test_s)
+print('Precisión Árboles de Decisión Clasificación - Sépalo: {}'.format(algoritmo.score(X_train_s, y_train_s)))
+
+print()
+print()
+
+##################################################################
+########## MODELO CON DATOS DE PÉTALO
+#Separo todos los datos con las características y las etiquetas o resultados
+petalo = iris[['PetalLengthCm','PetalWidthCm','Species']]
+X_petalo = np.array(petalo.drop(['Species'], 1))
+y_petalo = np.array(petalo['Species'])
+
+#Separo los datos de "train" en entrenamiento y prueba para probar los algoritmos
+X_train_p, X_test_p, y_train_p, y_test_p = train_test_split(X_petalo, y_petalo, test_size=0.2)
+print('Son {} datos pétalo para entrenamiento y {} datos pétalo para prueba'.format(X_train.shape[0], X_test.shape[0]))
+
+#Modelo de Regresión Logística
+algoritmo = LogisticRegression()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Regresión Logística - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))
+
+#Modelo de Máquinas de Vectores de Soporte
+algoritmo = SVC()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Máquinas de Vectores de Soporte - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))
+
+#Modelo de Vecinos más Cercanos
+algoritmo = KNeighborsClassifier(n_neighbors=5)
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Vecinos más Cercanos - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))
+
+#Modelo de Árboles de Decisión Clasificación
+algoritmo = DecisionTreeClassifier()
+algoritmo.fit(X_train_p, y_train_p)
+Y_pred = algoritmo.predict(X_test_p)
+print('Precisión Árboles de Decisión Clasificación - Pétalo: {}'.format(algoritmo.score(X_train_p, y_train_p)))</pre>
+<p>&nbsp;</p>
+ <style> ins.adsbygoogle { background: transparent !important; } </style>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Relacionado</em></h3>
+</div>					</div><!-- .entry-content -->
+
+		<footer class="entry-footer">
+			<p class="entry-meta"></p><!-- .entry-meta -->		</footer><!-- .entry-footer -->
+	</div><!-- .entry-container -->
+</article><!-- #post-## -->
+				
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Navegación de entradas</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="http://ligdigonzalez.com/portfolio/predecir-la-supervivencia-del-titanic-utilizando-python/" rel="prev"><span class="meta-nav" aria-hidden="true">&larr; Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Predecir la supervivencia del Titanic utilizando Python</span></a></div></div>
+	</nav>
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			4 thoughts on &ldquo;Creando un clasificador para la flor Iris&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+			
+		<li id="comment-3689" class="comment even thread-even depth-1">
+			<article id="div-comment-3689" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='http://2.gravatar.com/avatar/51f6e58ae4664fbfc2cd65b9bdb79527?s=48&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/51f6e58ae4664fbfc2cd65b9bdb79527?s=96&#038;d=mm&#038;r=g 2x' class='avatar avatar-48 photo' height='48' width='48' />						<cite class="fn">Andres Zarama</cite> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#comment-3689">
+							<time datetime="2019-05-11T04:41:19+00:00">
+								11 mayo, 2019 at 4:41 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>excelente contenido. te felicito. sigue publicando.</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+		<li id="comment-3968" class="comment byuser comment-author-ligdieli bypostauthor odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-3968" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='http://2.gravatar.com/avatar/50a0bfb447c83bbefa22d5cd2dad167d?s=48&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/50a0bfb447c83bbefa22d5cd2dad167d?s=96&#038;d=mm&#038;r=g 2x' class='avatar avatar-48 photo' height='48' width='48' />						<cite class="fn">ligdieli</cite> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#comment-3968">
+							<time datetime="2019-05-15T19:11:29+00:00">
+								15 mayo, 2019 at 7:11 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Muchas gracias.</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+		<li id="comment-5528" class="comment even thread-even depth-1">
+			<article id="div-comment-5528" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='http://1.gravatar.com/avatar/41fcc3fd1d169e40f2f9631592acee6e?s=48&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41fcc3fd1d169e40f2f9631592acee6e?s=96&#038;d=mm&#038;r=g 2x' class='avatar avatar-48 photo' height='48' width='48' />						<cite class="fn">christian</cite> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#comment-5528">
+							<time datetime="2019-06-06T14:33:31+00:00">
+								6 junio, 2019 at 2:33 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Lo mejor fue llegar  tu blog , gracias por el contenido !!</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+		<li id="comment-6119" class="comment byuser comment-author-ligdieli bypostauthor odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-6119" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='http://2.gravatar.com/avatar/50a0bfb447c83bbefa22d5cd2dad167d?s=48&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/50a0bfb447c83bbefa22d5cd2dad167d?s=96&#038;d=mm&#038;r=g 2x' class='avatar avatar-48 photo' height='48' width='48' />						<cite class="fn">ligdieli</cite> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://ligdigonzalez.com/portfolio/machine-learning-clasificador-flor-iris-python/#comment-6119">
+							<time datetime="2019-06-11T11:30:18+00:00">
+								11 junio, 2019 at 11:30 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Muchas gracias.</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Deja un comentario <small><a rel="nofollow" id="cancel-comment-reply-link" href="/portfolio/machine-learning-clasificador-flor-iris-python/#respond" style="display:none;">Cancelar respuesta</a></small></h3>			<form action="http://ligdigonzalez.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Tu dirección de correo electrónico no será publicada.</span> Los campos obligatorios están marcados con <span class="required">*</span></p><p class="comment-form-author"><input placeholder="Name&nbsp&nbsp;*" id="author" name="author" type="text" value="" size="30" aria-required='true' /></p>
+<p class="comment-form-email"><input placeholder="Email&nbsp&nbsp;*" id="email" name="email" type="text" value="" size="30" aria-required='true' /></p>
+<p class="comment-form-url"><input placeholder="Website" id="url" name="url" type="text" value="" size="30" /></p>
+<p class="comment-form-comment"><textarea placeholder="Comment&nbsp;*" id="comment" name="comment" cols="45" rows="8" aria-required='true'""></textarea></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Recibir un email con cada nueva entrada.</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Publicar comentario" /> <input type='hidden' name='comment_post_ID' value='1026' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4abf920d07" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="119"/></p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->			
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+            </div><!-- .wrapper -->
+        </div><!-- #content -->
+        
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="wrapper">
+            <div id="supplementary" class="three">
+        <div class="wrapper">
+                        <div id="first" class="widget-area" role="complementary">
+                <section id="eu_cookie_law_widget-3" class="widget widget_eu_cookie_law_widget"><div class="widget-wrap"><div
+	class="hide-on-button"
+	data-hide-timeout="30"
+	data-consent-expiration="180"
+	id="eu-cookie-law"
+>
+	<form method="post">
+		<input type="submit" value="Cerrar y aceptar" class="accept" />
+	</form>
+
+	Privacidad y cookies: este sitio utiliza cookies. Al continuar utilizando este sitio web, aceptas su uso. <br />
+Para obtener más información, incluido cómo controlar las cookies, consulta aquí:
+	<a href="https://automattic.com/cookies/" >
+		Política de cookie	</a>
+</div>
+</div><!-- .widget-wrap --></section><!-- .widget --><section id="top-posts-4" class="widget widget_top-posts"><div class="widget-wrap"><h2 class="widget-title">Entradas Populares</h2><ul>				<li>
+										<a href="http://ligdigonzalez.com/introduccion-a-numpy-python-1/" class="bump-view" data-bump-view="tp">
+						Introducción a la librería NumPy de Python - Parte 1					</a>
+										</li>
+								<li>
+										<a href="http://ligdigonzalez.com/importar-y-exportar-datos-en-python/" class="bump-view" data-bump-view="tp">
+						Importando y Exportando datos en Python					</a>
+										</li>
+								<li>
+										<a href="http://ligdigonzalez.com/algoritmo-regresion-polinomial-machine-learning/" class="bump-view" data-bump-view="tp">
+						Regresión Polinomial - Teoría					</a>
+										</li>
+				</ul></div><!-- .widget-wrap --></section><!-- .widget -->            </div><!-- #first .widget-area -->
+            
+                        <div id="second" class="widget-area" role="complementary">
+                <section id="categories-4" class="widget widget_categories"><div class="widget-wrap"><h2 class="widget-title">Categorías</h2>		<ul>
+				<li class="cat-item cat-item-4"><a href="http://ligdigonzalez.com/category/data-analysis/">Análisis de Datos</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://ligdigonzalez.com/category/blog/">Blog</a>
+</li>
+	<li class="cat-item cat-item-73"><a href="http://ligdigonzalez.com/category/inteligencia-artificial/">Inteligencia Artificial</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://ligdigonzalez.com/category/machine-learning/">Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-60"><a href="http://ligdigonzalez.com/category/portada-principal/">Portada Principal</a>
+</li>
+	<li class="cat-item cat-item-64"><a href="http://ligdigonzalez.com/category/proyectos/">Proyectos</a>
+</li>
+	<li class="cat-item cat-item-66"><a href="http://ligdigonzalez.com/category/python-para-machine-learning/">Python para Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://ligdigonzalez.com/category/data-visualization/">Visualización de Datos</a>
+</li>
+		</ul>
+			</div><!-- .widget-wrap --></section><!-- .widget -->            </div><!-- #second .widget-area -->
+            
+                        <div id="third" class="widget-area" role="complementary">
+                <section id="search-4" class="widget widget_search"><div class="widget-wrap"><h2 class="widget-title">Buscar</h2>
+<form role="search" method="get" class="search-form" action="http://ligdigonzalez.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Buscar..." value="" name="s">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</div><!-- .widget-wrap --></section><!-- .widget -->            </div><!-- #third .widget-area -->
+            
+                    </div> <!-- .wrapper -->
+    </div><!-- #supplementary --><div class="footer-menu-wrapper one"><div id="footer-social"><a class="fa fa-youtube" target="_blank" title="YouTube" href="https://www.youtube.com/channel/UCLJV54sFqPiH4MYcJKvGesg"><span class="screen-reader-text">YouTube</span> </a></div><!-- #footer-social --></div><!-- .footer-menu-wrapper -->
+			<div id="site-generator" class="site-info two">
+				<div class="wrapper">
+					<div id="footer-left-content" class="copyright">Copyright &copy; 2019 <a href="http://ligdigonzalez.com/">Ligdi González</a>. All Rights Reserved. </div>
+
+					<div id="footer-right-content" class="powered">Theme: <a target="_blank" href="https://catchthemes.com/themes/higher-education/">Higher Education</a></div>
+				</div><!-- .wrapper -->
+			</div><!-- #site-generator -->            </div><!-- .wrapper -->
+        </footer><!-- #colophon -->
+                    </div><!-- .site-inner -->
+        </div><!-- #page -->
+        
+<a href="#masthead" id="scrollup" class="scroll-to-top fa fa-angle-up" aria-hidden="true">
+				<span class="screen-reader-text">Scroll Up</span>
+				<span class="backtotop">Top</span>
+				</a>
+	<div style="display:none">
+	<div class="grofile-hash-map-51f6e58ae4664fbfc2cd65b9bdb79527">
+	</div>
+	<div class="grofile-hash-map-50a0bfb447c83bbefa22d5cd2dad167d">
+	</div>
+	<div class="grofile-hash-map-41fcc3fd1d169e40f2f9631592acee6e">
+	</div>
+	</div>
+	<script type="text/javascript">
+		var c = document.body.className;
+		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+		document.body.className = c;
+	</script>
+			<script type="text/javascript">
+			var wc_product_block_data = JSON.parse( decodeURIComponent( '%7B%22min_columns%22%3A1%2C%22max_columns%22%3A6%2C%22default_columns%22%3A3%2C%22min_rows%22%3A1%2C%22max_rows%22%3A6%2C%22default_rows%22%3A1%2C%22thumbnail_size%22%3A300%2C%22placeholderImgSrc%22%3A%22https%3A%5C%2F%5C%2Fi2.wp.com%5C%2Fligdigonzalez.com%5C%2Fwp-content%5C%2Fuploads%5C%2Fwoocommerce-placeholder.png%3Fresize%3D300%252C300%22%2C%22min_height%22%3A500%2C%22default_height%22%3A500%2C%22isLargeCatalog%22%3Afalse%2C%22limitTags%22%3Afalse%2C%22hasTags%22%3Afalse%2C%22productCategories%22%3A%5B%7B%22term_id%22%3A30%2C%22name%22%3A%22Uncategorized%22%2C%22slug%22%3A%22uncategorized%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A30%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Funcategorized%5C%2F%22%7D%2C%7B%22term_id%22%3A48%2C%22name%22%3A%22Albums%22%2C%22slug%22%3A%22albums%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A48%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A44%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fmusic%5C%2Falbums%5C%2F%22%7D%2C%7B%22term_id%22%3A42%2C%22name%22%3A%22Clothing%22%2C%22slug%22%3A%22clothing%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A42%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fclothing%5C%2F%22%7D%2C%7B%22term_id%22%3A43%2C%22name%22%3A%22Hoodies%22%2C%22slug%22%3A%22hoodies%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A43%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A42%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fclothing%5C%2Fhoodies%5C%2F%22%7D%2C%7B%22term_id%22%3A44%2C%22name%22%3A%22Music%22%2C%22slug%22%3A%22music%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A44%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fmusic%5C%2F%22%7D%2C%7B%22term_id%22%3A45%2C%22name%22%3A%22Posters%22%2C%22slug%22%3A%22posters%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A45%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fposters%5C%2F%22%7D%2C%7B%22term_id%22%3A71%2C%22name%22%3A%22Servicios%22%2C%22slug%22%3A%22servicios%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A71%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A0%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fservicios%5C%2F%22%7D%2C%7B%22term_id%22%3A46%2C%22name%22%3A%22Singles%22%2C%22slug%22%3A%22singles%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A46%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A44%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fmusic%5C%2Fsingles%5C%2F%22%7D%2C%7B%22term_id%22%3A47%2C%22name%22%3A%22T-shirts%22%2C%22slug%22%3A%22t-shirts%22%2C%22term_group%22%3A0%2C%22term_taxonomy_id%22%3A47%2C%22taxonomy%22%3A%22product_cat%22%2C%22description%22%3A%22%22%2C%22parent%22%3A42%2C%22count%22%3A0%2C%22filter%22%3A%22raw%22%2C%22link%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2Fproduct-category%5C%2Fclothing%5C%2Ft-shirts%5C%2F%22%7D%5D%2C%22homeUrl%22%3A%22http%3A%5C%2F%5C%2Fligdigonzalez.com%5C%2F%22%7D' ) );
+		</script>
+		<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20190201'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"http:\/\/ligdigonzalez.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201939'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"Ver carrito","cart_url":"http:\/\/ligdigonzalez.com\/carrito\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=3.7.0'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=3.7.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_e38b30d40d1c4b0a6e2408b807f939b3","fragment_name":"wc_fragments_e38b30d40d1c4b0a6e2408b807f939b3","request_timeout":"5000"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=3.7.0'></script>
+<script type='text/javascript'>
+		jQuery( 'body' ).bind( 'wc_fragments_refreshed', function() {
+			jQuery( 'body' ).trigger( 'jetpack-lazy-images-load' );
+		} );
+	
+</script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2019Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=5.2.3'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/skip-link-focus-fix.min.js?ver=2.0.1'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/jquery.cycle/jquery.cycle2.min.js?ver=2.1.5'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/navigation.min.js?ver=2.0.1'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/themes/higher-education/js/scrollup.min.js?ver=2.0.1'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/widgets/eu-cookie-law/eu-cookie-law.min.js?ver=20180522'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=3.10.0'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.10.0'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-includes/js/wp-embed.min.js?ver=5.2.3'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/spin.min.js?ver=1.3'></script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/jquery.spin.min.js?ver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"es","ajaxurl":"http:\/\/ligdigonzalez.com\/wp-admin\/admin-ajax.php","nonce":"69fdefa7e1","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comentario","post_comment":"Publicar comentario","write_comment":"Escribir un Comentario...","loading_comments":"Cargando comentarios...","download_original":"Ver tama\u00f1o completo <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Por favor, aseg\u00farate de enviar el texto con tu comentario.","no_comment_email":"Por favor, proporciona una direcci\u00f3n de correo electr\u00f3nico para comentar.","no_comment_author":"Por favor, a\u00f1ade tu nombre al comentario.","comment_post_error":"Lo sentimos, pero hubo un error al publicar tu comentario. Por favor, vuelve a intentarlo m\u00e1s tarde.","comment_approved":"Se aprob\u00f3 tu comentario.","comment_unapproved":"Tu comentario est\u00e1 en moderaci\u00f3n.","camera":"C\u00e1mara","aperture":"Abertura","shutter_speed":"Velocidad de obturaci\u00f3n","focal_length":"Longitud focal","copyright":"Derechos","comment_registration":"0","require_name_email":"1","login_url":"http:\/\/ligdigonzalez.com\/wp-login.php?redirect_to=http%3A%2F%2Fligdigonzalez.com%2Fportfolio%2Fmachine-learning-clasificador-flor-iris-python%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Correo electr\u00f3nico (Obligatorio)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Nombre (Obligatorio)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Web<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/jetpack/_inc/build/carousel/jetpack-carousel.min.js?ver=20190102'></script>
+<script async="async" type='text/javascript' src='http://ligdigonzalez.com/wp-content/plugins/akismet/_inc/form.js?ver=4.1.2'></script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"enlighter","indent":2,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":true,"infoButton":true,"windowButton":true,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script><script type='text/javascript' src='https://stats.wp.com/e-201939.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.2',blog:'140607109',post:'1026',tz:'0',srv:'ligdigonzalez.com'} ]);
+	_stq.push([ 'clickTrackerInit', '140607109', '1026' ]);
+</script>
+
+</body>
+</html>
