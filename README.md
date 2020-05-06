@@ -53,6 +53,7 @@ LinkedIn: https://www.linkedin.com/in/sergioalegre
 * scipy
 * Tensorflow
 * Keras
+<br>
 Datasets:
 * MNIST
 * IRIS
