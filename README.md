@@ -54,11 +54,7 @@ LinkedIn: https://www.linkedin.com/in/sergioalegre
 * Tensorflow
 * Keras
 <br>
-Datasets:
-* MNIST
-* IRIS
-* Fashion
-* Enfermedades corazon / heart diseases
+Datasets: MNIST, IRIS, Fashion, Enfermedades corazon / heart diseases
 
 ## Getting Started
 - Ejemplos sencillos de diversas técnicas de aprendizaje de diferentes datasets populares. Ejemplos de Regresión lineal, Random forest, SVM, Clustering con K-Means y Tensorflow.
