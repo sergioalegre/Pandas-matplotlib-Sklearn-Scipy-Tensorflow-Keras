@@ -7,7 +7,7 @@ REEMPLAZAR: Buscador-Ajax-similar-a-Google, TITULO, DESCRIPCION, DESCRIPCION2, D
 <br />
 <p align="center">
   <a href="https://github.com/sergioalegre/Pandas-matplotlib-Sklearn-Scipy-Tensorflow-Keras">
-    <img src="http://naarean.es/logo.JPG" alt="Logo" width="80" height="80">
+    <img src="http://sergioalegre.es/logo.JPG" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center"><!-- TITULO -->Python with Pandas-matplotlib-Sklearn-Scipy-Tensorflow-Keras</h3>
@@ -35,7 +35,7 @@ REEMPLAZAR: Buscador-Ajax-similar-a-Google, TITULO, DESCRIPCION, DESCRIPCION2, D
 - IA & Machine Learning grade practices 2019-2020
 <br><br>
 <p align="center">
-    <img src="http://naarean.es/machine_learning_sergio_alegre.png" alt="Logo" width="850" height="">
+    <img src="http://sergioalegre.es/machine_learning_sergio_alegre.png" alt="Logo" width="850" height="">
 </p>
 
 ## Contact
